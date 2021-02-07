@@ -9,14 +9,17 @@
     "no-underscore-dangle": 0,
     "no-unused-vars": "off",
     "eqeqeq": "off",
-    "no-use-before-define": ["error", {
-      "variables": false
-    }],
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ],
     "no-multi-str": 0,
     "comma-dangle": "off",
     "no-param-reassign": "off",
     "linebreak-style": "off",
-    "indent":"off",
+    "indent": "off",
     "max-len": ["error", 120],
     "implicit-arrow-linebreak": "off"
   },
@@ -33,7 +36,5 @@
     "ecmaVersion": 9,
     "sourceType": "module"
   },
-  "extends": [
-    "airbnb-base"
-  ]
+  "extends": ["airbnb-base"]
 }
