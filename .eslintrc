@@ -21,7 +21,8 @@
     "linebreak-style": "off",
     "indent": "off",
     "max-len": ["error", 120],
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "no-shadow": "off"
   },
   "globals": {
     "document": false
