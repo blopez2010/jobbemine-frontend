@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Icon from '@material-ui/core/Icon';
 
 // components
-import Skills from './Skills';
+import ActionButtons from './ActionButtons';
 import Compensation from './Compensation';
+import MainInfo from '../../global-components/MainInfo';
 import Members from './Members';
+import Skills from '../../global-components/Skills';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,30 +27,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     width: 800,
   },
-  avatar: {
-    width: theme.spacing(8),
-    height: theme.spacing(8),
-  },
-  avatarGroupItem: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-  avatarContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
-  objective: {
-    marginTop: '0.5em',
-  },
   remote: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  jobDetails: {
-    marginBottom: '0.5em',
   },
   generalInfo: {
     display: 'flex',
@@ -108,15 +89,8 @@ const JobCard = ({ opportunity }) => {
     <div className={classes.root}>
       <ButtonBase disableRipple>
         <Paper className={classes.paper}>
-          <div className={classes.avatarContainer}>
-            <Avatar src={organization.picture} variant="rounded" className={classes.avatar} />
-            <Typography gutterBottom variant="button" className={classes.objective}>
-              {objective}
-            </Typography>
-            <div className={classes.jobDetails}>
-              <Typography variant="overline" className={classes.overline}>
-                {typeDescription}
-              </Typography>
+          <MainInfo title={objective} subTitle={typeDescription} picture={organization.picture}>
+            <Typography variant="overline" className={classes.overline}>
               {remote ? (
                 <div className={classes.remote}>
                   <Icon style={{ fontSize: 17, marginRight: '0.4em' }}>public</Icon>
@@ -125,8 +99,8 @@ const JobCard = ({ opportunity }) => {
                   </Typography>
                 </div>
               ) : null}
-            </div>
-          </div>
+            </Typography>
+          </MainInfo>
           <Divider />
           <div className={classes.perks}>
             <div className={classes.generalInfo}>
@@ -137,6 +111,8 @@ const JobCard = ({ opportunity }) => {
               <Skills skills={skills} />
             </div>
           </div>
+          <Divider />
+          <ActionButtons />
         </Paper>
       </ButtonBase>
     </div>

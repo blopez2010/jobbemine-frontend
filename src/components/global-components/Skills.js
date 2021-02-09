@@ -20,10 +20,21 @@ const Skills = ({ skills = [] }) => {
 
   return (
     <div className={classes.root}>
-      {skills.map(sk => {
-        const description = `${sk.name} - ${sk.experience.replaceAll(/-/ig, ' ').replace('plus', '+')}`;
+      {skills.map((sk, index) => {
+        if (sk.experience) {
+          return (
+            <Chip
+              key={index}
+              label={`${sk.name} - ${sk.experience.replaceAll(/-/gi, ' ').replace('plus', '+')}`}
+            />
+          );
+        }
 
-        return <Chip key={sk.name} label={description} />;
+        if (sk.weight) {
+          return <Chip key={index} label={`${sk.name} - ${Math.round(sk.weight)}`} />;
+        }
+
+        return <Chip key={index} label={sk.name} />;
       })}
     </div>
   );
