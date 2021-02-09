@@ -21,29 +21,29 @@ const TabsHeader = ({ setActiveTab }) => {
 
     switch (newValue) {
       case 1:
-        push('/jobs');
+        push('/people');
         break;
       case 2:
         push('/stats');
         break;
 
       default:
-        push('/people');
+        push('/jobs');
     }
   };
 
   useEffect(() => {
     switch (path) {
-      case '/jobs':
+      case '/people':
         setValue(1);
-        setActiveTab('/jobs', 1);
+        setActiveTab('/people', 1);
         break;
         case '/stats':
           setValue(2);
           setActiveTab('/stats', 2);
         break;
       default:
-        setActiveTab('/people', 0);
+        setActiveTab('/jobs', 0);
         setValue(0);
     }
   }, [path]);
@@ -51,8 +51,8 @@ const TabsHeader = ({ setActiveTab }) => {
   return (
     <AppBar position="static">
       <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-        <Tab label="People" {...a11yProps(0)} />
-        <Tab label="Jobs" {...a11yProps(1)} />
+        <Tab label="Jobs" {...a11yProps(0)} />
+        <Tab label="People" {...a11yProps(1)} />
         <Tab label="Statistics" {...a11yProps(2)} />
       </Tabs>
     </AppBar>

@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { setActiveTab } from '../store/actions/tabActions';
 
 // Components
+import Opportunities from '../components/Opportunities/Opportunities';
 import TabContainer from '../components/global-components/TabContainer';
 import TabsHeader from '../components/global-components/TabsHeader';
 
@@ -13,7 +14,7 @@ const Dashboard = ({ tabIndex, setActiveTab }) => (
   <div>
     <TabsHeader setActiveTab={setActiveTab} />
     <TabContainer value={tabIndex} index={0}>
-      <Typography>Item One</Typography>
+      <Opportunities />
     </TabContainer>
     <TabContainer value={tabIndex} index={1}>
       <Typography>Item Two</Typography>
