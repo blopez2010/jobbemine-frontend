@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from '@material-ui/core/Pagination';
 import LinearIndeterminate from '../global-components/LinearIndeterminate';
-import JobCard from './sub-components/JobCard';
-import { getOpportunities } from '../../adapters/api';
+import { getPeople } from '../../adapters/api';
 
-const Opportunities = () => {
+// Components
+import PeopleCard from './sub-components/PeopleCard';
+
+const People = () => {
   const [page, setPage] = useState(1);
   const size = 10;
 
-  const { loading, error, offset, total, opportunities } = getOpportunities(page, size) || {};
+  const { loading, error, offset, total, people } = getPeople(page, size) || {};
 
   useEffect(() => {
     setPage(offset + 1);
@@ -26,8 +28,8 @@ const Opportunities = () => {
         <LinearIndeterminate />
       ) : (
         <div className="list-container">
-          {opportunities.map(opportunity => (
-            <JobCard key={opportunity.id} opportunity={opportunity} />
+          {people.map(p => (
+            <PeopleCard key={p.username} people={p} />
           ))}
         </div>
       )}
@@ -38,4 +40,4 @@ const Opportunities = () => {
   );
 };
 
-export default Opportunities;
+export default People;

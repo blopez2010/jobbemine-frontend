@@ -15,7 +15,6 @@ const store = createStore();
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <ApolloProvider client={client}>
       <Provider store={store}>
         <App />

@@ -1,4 +1,5 @@
-import { ApolloClient, InMemoryCache, useQuery, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, useQuery } from '@apollo/client';
+import { OPPORTUNITIES_LIST, PEOPLE_LIST } from './queries';
 
 export default new ApolloClient({
   uri: 'http://localhost:4001/',
@@ -6,45 +7,6 @@ export default new ApolloClient({
 });
 
 export const getOpportunities = (page = 0, size = 10) => {
-  const OPPORTUNITIES_LIST = gql`
-    query GetOpportunities($offset: Int!, $size: Int!) {
-      getOpportunities(offset: $offset, size: $size) {
-        offset
-        size
-        total
-        results {
-          id
-          objective
-          type
-          organizations {
-            name
-            picture
-          }
-          remote
-          locations
-          compensation {
-            data {
-              currency
-              code
-              minAmount
-              maxAmount
-              periodicity
-            }
-          }
-          members {
-            username
-            name
-            picture
-          }
-          skills {
-            name
-            experience
-          }
-        }
-      }
-    }
-  `;
-
   const {
     loading = false,
     error = '',
@@ -58,6 +20,24 @@ export const getOpportunities = (page = 0, size = 10) => {
     error,
     offset,
     total,
-    opportunities: results
+    opportunities: results,
+  };
+};
+
+export const getPeople = (page = 0, size = 10) => {
+  const {
+    loading = false,
+    error = '',
+    data: { getPeople: { offset = 0, total = 0, results = [] } = {} } = {},
+  } = useQuery(PEOPLE_LIST, {
+    variables: { offset: page - 1, size },
+  });
+
+  return {
+    loading,
+    error,
+    offset,
+    total,
+    people: results,
   };
 };
