@@ -2,17 +2,33 @@ import React, { useState, useEffect } from 'react';
 import Pagination from '@material-ui/core/Pagination';
 import LinearIndeterminate from '../global-components/LinearIndeterminate';
 import JobCard from './sub-components/JobCard';
-import { getOpportunities } from '../../adapters/api';
+import { getOpportunities, getOpportunitiesFromRest } from '../../adapters/api';
 
 const Opportunities = () => {
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [offset, setOffset] = useState(0);
+  const [opportunities, setOpportunities] = useState([]);
   const size = 10;
 
-  const { loading, error, offset, total, opportunities } = getOpportunities(page, size) || {};
+  // const { loading, error, offset, total, opportunities } = getOpportunities(page, size) || {};
+
+  const apiRequest = async (page = 0) => {
+    try {
+      setLoading(true);
+      const result = (await getOpportunitiesFromRest(page, size)).data || {};
+      setOffset(result.offset);
+      setOpportunities(result.results);
+    } catch (error) {
+      setError(error);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setPage(offset + 1);
-  }, []);
+    apiRequest(page);
+  }, [page]);
 
   const handleChange = (event, value) => {
     setPage(value);

@@ -1,3 +1,4 @@
+import { post } from 'axios';
 import { ApolloClient, InMemoryCache, useQuery } from '@apollo/client';
 import { OPPORTUNITIES_LIST, PEOPLE_LIST } from './queries';
 
@@ -40,4 +41,34 @@ export const getPeople = (page = 0, size = 10) => {
     total,
     people: results,
   };
+};
+
+export const getOpportunitiesFromRest = (page = 0, size = 10) => {
+  const url = `https://search.torre.co/opportunities/_search/?offset=${page}&size=${size}`;
+
+  return post(
+    url,
+    {},
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Accept: 'application/json',
+      },
+    }
+  );
+};
+
+export const getPeopleFromRest = (page = 0, size = 10) => {
+  const url = `https://search.torre.co/people/_search/?offset=${page}&size=${size}`;
+
+  return post(
+    url,
+    {},
+    {
+      headers: {
+        'Content-type': 'application/json',
+        Accept: 'application/json',
+      },
+    }
+  );
 };
