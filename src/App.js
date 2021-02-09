@@ -9,14 +9,16 @@ import Dashboard from './containers/Dashboard';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Job Be Mine
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <div className="footer">
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Job Be Mine
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    </div>
   );
 }
 
@@ -25,10 +27,10 @@ export default function App() {
     <Container maxWidth="lg">
       <Router>
         <Switch>
-          <Route path="/people">
+          <Route path="/jobs">
             <Dashboard />
           </Route>
-          <Route path="/jobs">
+          <Route path="/people">
             <Dashboard />
           </Route>
           <Route path="/stats">
